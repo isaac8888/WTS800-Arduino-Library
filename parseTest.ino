@@ -17,9 +17,17 @@ void parseTest(void)
   pch = strtok(str, ",");
   while (pch != NULL)
   {
-    Serial.println(pch);
+    char *p;
+    p = strchr (pch, '=');
+    if (p != NULL)
+    {
+      Serial.println(pch);
+      
+    }
+
     pch = strtok (NULL, " ,");
   }
+
 }
 
 void setup()
