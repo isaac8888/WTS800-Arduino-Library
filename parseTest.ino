@@ -26,7 +26,7 @@ void parseTest(void)
 {
   char str[512];
   memset(str, 0, 512);
-  char *pch;
+  char * pch;
 
   // Send R0 command and dump response into str
   Serial1.print("0R0\r\n");
@@ -37,44 +37,44 @@ void parseTest(void)
   pch = strtok(str, ",");
   while (pch != NULL)
   {
+    //
     char *p;
     p = strchr (pch, '=');
     if (p != NULL)
     {
+      
       Serial.println(pch);
-        
+    
       //if there's no decimal point, use string to long
-      char *p;
-      long ret;
-      char *ptr;
-      p =strchr (pch, '.');
-      if (p != NULL)
-      {
-        ret = strtol(str, &ptr, 10);
-        Serial.println(pch);
-      }
+      //char *str, *stopstring;
+      //float f;
+      //str[512];
+      //f = strtod (str, &stopstring);
+      
+       //Serial.println(pch);
+       //Serial.println(f);
+       //Serial.println(stopstring);
+       //Serial.println(pch);
+    }
      
  
-      {
+      
         //string to long (put the result into the structure up top)
         
 
-      }
+      
       //if decimal point use string to float
       //else if (decimal point)
-      {
+      //{
         // string to double (put the result into the structure up top)
         //char *ptr;
         //double ret;
         //if (ret != NULL)
-        {
+        
           //ret = strtod(str, &ptr);
           //Serial.println(pch);
-        }
-      }
-
-    }
-
+      //}
+      
     pch = strtok (NULL, " ,");
   }
 
