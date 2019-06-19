@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#define strtof(A, B) strtod(A, B)
 
 struct WTS {
   int Dn;
@@ -37,44 +38,41 @@ void parseTest(void)
   pch = strtok(str, ",");
   while (pch != NULL)
   {
-    //
+    //checking if
     char *p;
     p = strchr (pch, '=');
     if (p != NULL)
     {
-      
       Serial.println(pch);
-    
-      //if there's no decimal point, use string to long
-      //char *str, *stopstring;
-      //float f;
-      //str[512];
-      //f = strtod (str, &stopstring);
-      
-       //Serial.println(pch);
-       //Serial.println(f);
-       //Serial.println(stopstring);
-       //Serial.println(pch);
-    }
-     
- 
-      
-        //string to long (put the result into the structure up top)
-        
 
-      
-      //if decimal point use string to float
-      //else if (decimal point)
-      //{
-        // string to double (put the result into the structure up top)
-        //char *ptr;
-        //double ret;
-        //if (ret != NULL)
-        
-          //ret = strtod(str, &ptr);
-          //Serial.println(pch);
-      //}
-      
+      //if there's a decimal point, use string to float
+      char *pch, *stopstring;
+      float f;
+      f = strtof (pch, &stopstring);
+
+      Serial.println(f);
+      //Serial.println(pch);
+      //Serial.println(stopstring);
+    }
+
+
+
+    //string to long (put the result into the structure up top)
+
+
+
+    //if decimal point use string to float
+    //else if (decimal point)
+    //{
+    // string to double (put the result into the structure up top)
+    //char *ptr;
+    //double ret;
+    //if (ret != NULL)
+
+    //ret = strtod(str, &ptr);
+    //Serial.println(pch);
+    //}
+
     pch = strtok (NULL, " ,");
   }
 
