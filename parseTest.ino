@@ -1,6 +1,6 @@
-/* strtok example */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct WTS {
   int Dn;
@@ -26,7 +26,7 @@ void parseTest(void)
 {
   char str[512];
   memset(str, 0, 512);
-  char * pch;
+  char *pch;
 
   // Send R0 command and dump response into str
   Serial1.print("0R0\r\n");
@@ -42,14 +42,35 @@ void parseTest(void)
     if (p != NULL)
     {
       Serial.println(pch);
-      if (decimal point)
+        
+      //if there's no decimal point, use string to long
+      char *p;
+      long ret;
+      char *ptr;
+      p =strchr (pch, '.');
+      if (p != NULL)
       {
-        stringtofloat (put the result into the structure up top)
+        ret = strtol(str, &ptr, 10);
+        Serial.println(pch);
       }
-
-      else if (no decimal point)
+     
+ 
       {
-        string to long (put the result into the structure up top)
+        //string to long (put the result into the structure up top)
+        
+
+      }
+      //if decimal point use string to float
+      //else if (decimal point)
+      {
+        // string to double (put the result into the structure up top)
+        //char *ptr;
+        //double ret;
+        //if (ret != NULL)
+        {
+          //ret = strtod(str, &ptr);
+          //Serial.println(pch);
+        }
       }
 
     }
