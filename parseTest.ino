@@ -2,10 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct WTS {
-  char * wd;
-  int Dn;
-  /*int Dm;
+/*********************************************************
+  Global variables + Defines
+**********************************************************/
+
+typedef struct {
+    int Dn;
+    int Dm;
     int Dx;
     float Sn;
     float Sm;
@@ -18,47 +21,59 @@ struct WTS {
     int Lux;
     int T;
     int La;
-    int Lo;*/
-};
+    int Lo;
+} wts;
 
+wts weather_packet;
+
+/*********************************************************
+  Functions
+**********************************************************/
+
+void printWTSvalues(void)
+{
+  Serial.print("Dn: ");
+  Serial.println(weather_packet.Dn);
+  
+  Serial.print("Dm: ");
+  Serial.println(weather_packet.Dm);
+}
 
 void parseTest(void)
 {
-  char str[512];
-  memset(str, 0, 512);
-  char *pch;
+    char str[512];
+    memset(str, 0, 512);
 
-  // Send R0 command and dump response into str
-  Serial1.print("0R0\r\n");
-  Serial1.readBytesUntil("\n", str, 512);
-
-
-  // Parse string into tokens using a comma as the delimeter
-  pch = strtok(str, ",");
-  while (pch != NULL)
-  {
-    //checking if there are equal signs (getting rid of 0R0, n, & e)
-    char *p;
-    p = strchr (pch, '=');
-    if (p != NULL)
-    {
-      Serial.println(pch);
-
-
-
-  }
-
+    // Send R0 command and dump response into str
+    Serial1.print("0R0\r\n");
+    Serial1.readBytesUntil("\n", str, 512);
+    
+    sscanf(str, const char * format, 
+      weather_packet.Dn, weather_packet.Dm, weather_packet.Dx, 
+      weather_packet.Sn, weather_packet.Sm, weather_packet.Sx, 
+      weather_packet.Ta, weather_packet.Ua, weather_packet.Pa, 
+      weather_packet.Rc, weather_packet.Sr, weather_packet.Lux,
+      weather_packet.T, weather_packet.La, weather_packet.Lo);
+      
+  printWTSvalues();
 }
+
+/*********************************************************
+  Init
+**********************************************************/
 
 void setup()
 {
-  Serial.begin(19200);
-  Serial1.begin(19200);
-  delay(2000);
-  parseTest();
+    Serial.begin(19200);
+    Serial1.begin(19200);
+    delay(2000);
+    parseTest();
 }
+
+/*********************************************************
+  Loop
+**********************************************************/
 
 void loop()
 {
-
 }
