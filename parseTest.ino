@@ -2,26 +2,25 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct {
-  char * weather_data;
+struct WTS {
+  char * wd;
   int Dn;
-  int Dm;
-  int Dx;
-  float Sn;
-  float Sm;
-  float Sx;
-  float Ta;
-  float Ua;
-  float Pa;
-  float Rc;
-  float Sr;
-  int Lux;
-  int T;
-  int La;
-  int Lo;
-} wts;
+  /*int Dm;
+    int Dx;
+    float Sn;
+    float Sm;
+    float Sx;
+    float Ta;
+    float Ua;
+    float Pa;
+    float Rc;
+    float Sr;
+    int Lux;
+    int T;
+    int La;
+    int Lo;*/
+};
 
-//struct WTS weather_data;
 
 void parseTest(void)
 {
@@ -45,22 +44,25 @@ void parseTest(void)
     {
       Serial.println(pch);
 
-      wts weather;
-      
-      weather.Dn;
-      
-      
-      char str[512];
-      scanf("%*[^=]%4d%[^\n]", weather.Dn);
+      struct WTS weather_data;
+      struct WTS *sp;
+      weather_data.Dn = 4;
+      weather_data.wd = "Dn";
+      sp = &weather_data;
+      Serial.println(weather_data.wd);
+
+
+      //char str[512];
+      //scanf("%4d", weather);
       //if (a != NULL)
-      Serial.println(weather.Dn);
-      
+      //Serial.println(weather.weather_data);
+
 
 
       //if there's a decimal point, use string to float
 
     }
-   
+
 
 
     //string to long (put the result into the structure up top)
