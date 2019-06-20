@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 /*********************************************************
   Global variables + Defines
 **********************************************************/
@@ -20,8 +21,8 @@ typedef struct {
     float Sr;
     int Lux;
     int T;
-    int La;
-    int Lo;
+    float La;
+    float Lo;
 } wts;
 
 wts weather_packet;
@@ -92,7 +93,7 @@ void parseTest(void)
     Serial.println(str);
     
 
-    sscanf(str,"0R0,Dn=%dD,Dm=%dD,Dx=%dD,Sn=%fM,Sm=%fM,Sx=%fM,Ta=%fC,Ua=%fP,Pa=%fH,Rc=%fM,Sr=%fW,Lux=%dL,T=%d,La=%d,N,Lo=%d,E", 
+    sscanf(str,"0R0,Dn=%dD,Dm=%dD,Dx=%dD,Sn=%fM,Sm=%fM,Sx=%fM,Ta=%fC,Ua=%fP,Pa=%fH,Rc=%fM,Sr=%fW,Lux=%dL,T=%d,La=%f,N,Lo=%f,E", 
       &weather_packet.Dn, &weather_packet.Dm, &weather_packet.Dx, 
       &weather_packet.Sn, &weather_packet.Sm, &weather_packet.Sx, 
       &weather_packet.Ta, &weather_packet.Ua, &weather_packet.Pa, 
