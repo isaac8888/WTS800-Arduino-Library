@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define strtof(A, B) strtod(A, B)
 
-struct WTS {
+typedef struct {
+  char * weather_data;
   int Dn;
   int Dm;
   int Dx;
@@ -21,13 +21,13 @@ struct WTS {
   int Lo;
 } wts;
 
-struct WTS weather_data;
+//struct WTS weather_data;
 
 void parseTest(void)
 {
   char str[512];
   memset(str, 0, 512);
-  char * pch;
+  char *pch;
 
   // Send R0 command and dump response into str
   Serial1.print("0R0\r\n");
@@ -38,23 +38,29 @@ void parseTest(void)
   pch = strtok(str, ",");
   while (pch != NULL)
   {
-    //checking if
+    //checking if there are equal signs (getting rid of 0R0, n, & e)
     char *p;
     p = strchr (pch, '=');
     if (p != NULL)
     {
       Serial.println(pch);
 
+      wts weather;
+      
+      weather.Dn;
+      
+      
+      char str[512];
+      scanf("%*[^=]%4d%[^\n]", weather.Dn);
+      //if (a != NULL)
+      Serial.println(weather.Dn);
+      
+
+
       //if there's a decimal point, use string to float
-      char *pch, *stopstring;
-      float f;
-      f = strtof (pch, &stopstring);
 
-      Serial.println(f);
-      //Serial.println(pch);
-      //Serial.println(stopstring);
     }
-
+   
 
 
     //string to long (put the result into the structure up top)
